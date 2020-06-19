@@ -25,6 +25,8 @@
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.20.0",
+    "husky": ">=4",
+    "lint-staged": ">=10",
     "prettier": "2.0.5"
   },
   "keywords": [
@@ -40,5 +42,14 @@
     "lint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "typecheck": "tsc --noEmit",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --cache --fix",
+    "*.{ts,tsx,js,jsx,json,md}": "prettier --write"
   }
 }
