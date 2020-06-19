@@ -1,10 +1,12 @@
 import React from "react"
 
-const marna = (n: number) => n + 1
+const hoge = (n: string) => n
 
-export default () => (
+const Index = () => (
   <>
     <h1>sushihack.com</h1>
-    <div>{marna(100)}</div>
+    <div>{hoge("hogechan")}</div>
   </>
 )
+
+export default Index
