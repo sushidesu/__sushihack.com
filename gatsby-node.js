@@ -1,7 +1,8 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+require("ts-node").register({
+  compilerOptions: {
+    module: "commonjs",
+    target: "es5",
+  },
+})
 
-// You can delete this file if you're not using it
+exports.createPages = require("./gatsby-node.ts").createPages

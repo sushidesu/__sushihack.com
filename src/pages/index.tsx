@@ -1,6 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { SiteData } from "../types/data"
+import { relativeURL } from "../utils"
 
 type Props = {
   data: SiteData
@@ -11,7 +12,9 @@ const Index: React.FC<Props> = ({ data }) => (
     <h1>sushihack.com</h1>
     <ul>
       {data.allMicrocmsPosts.edges.map(({ node }) => (
-        <li key={node.id}>{node.title}</li>
+        <li key={node.id}>
+          <Link to={relativeURL("post", node.slug)}>{node.title}</Link>
+        </li>
       ))}
     </ul>
   </div>
@@ -25,6 +28,7 @@ export const query = graphql`
           id
           title
           body
+          slug
         }
       }
     }
