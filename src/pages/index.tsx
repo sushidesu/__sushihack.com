@@ -1,12 +1,34 @@
 import React from "react"
+import { graphql } from "gatsby"
+import { SiteData } from "../types/data"
 
-const hoge = (n: string) => n
+type Props = {
+  data: SiteData
+}
 
-const Index = () => (
-  <>
+const Index: React.FC<Props> = ({ data }) => (
+  <div>
     <h1>sushihack.com</h1>
-    <div>{hoge("hogechan")}</div>
-  </>
+    <ul>
+      {data.allMicrocmsPosts.edges.map(({ node }) => (
+        <li key={node.id}>{node.title}</li>
+      ))}
+    </ul>
+  </div>
 )
+
+export const query = graphql`
+  {
+    allMicrocmsPosts {
+      edges {
+        node {
+          id
+          title
+          body
+        }
+      }
+    }
+  }
+`
 
 export default Index

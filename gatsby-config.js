@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: ".env",
+})
+
 module.exports = {
   siteMetadata: {
     title: `sushihack.com`,
@@ -7,6 +11,14 @@ module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: process.env.MICROCMS_API_KEY,
+        serviceId: "sushihack",
+        endpoint: "posts",
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
