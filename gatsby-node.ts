@@ -5,15 +5,17 @@ import { relativeURL } from "./src/utils"
 
 const query = `
   {
-    allMicrocmsPosts {
+    allContentfulPost {
       edges {
         node {
-          id
-          createdAt
-          updatedAt
           slug
           title
-          body
+          body {
+            body
+            childMarkdownRemark {
+              html
+            }
+          }
           tags {
             id
             name
@@ -36,7 +38,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     throw result.errors
   }
 
-  result.data.allMicrocmsPosts.edges.forEach(({ node }) => {
+  result.data.allContentfulPost.edges.forEach(({ node }) => {
     createPage<Post>({
       path: relativeURL("post", node.slug),
       component: path.resolve("./src/templates/BlogPost.tsx"),

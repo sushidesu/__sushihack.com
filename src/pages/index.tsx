@@ -11,7 +11,7 @@ const Index: React.FC<Props> = ({ data }) => (
   <div>
     <h1>sushihack.com</h1>
     <ul>
-      {data.allMicrocmsPosts.edges.map(({ node }) => (
+      {data.allContentfulPost.edges.map(({ node }) => (
         <li key={node.id}>
           <Link to={relativeURL("post", node.slug)}>{node.title}</Link>
         </li>
@@ -22,12 +22,11 @@ const Index: React.FC<Props> = ({ data }) => (
 
 export const query = graphql`
   {
-    allMicrocmsPosts {
+    allContentfulPost {
       edges {
         node {
           id
           title
-          body
           slug
         }
       }

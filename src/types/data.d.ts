@@ -1,11 +1,14 @@
 export type Post = {
   id: string
-  createdAt: string
-  updatedAt: string
 
   slug: string
   title: string
-  body: string
+  body: {
+    body: string
+    childMarkdownRemark: {
+      html: string
+    }
+  }
   tags: Array<Tag>
 }
 
@@ -15,7 +18,7 @@ export type Tag = {
 }
 
 export type SiteData = {
-  allMicrocmsPosts: {
+  allContentfulPost: {
     totalCount: number
     edges: {
       node: Post

@@ -12,11 +12,14 @@ module.exports = {
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: "gatsby-source-microcms",
+      resolve: "gatsby-transformer-remark",
+    },
+    {
+      resolve: `gatsby-source-contentful`,
       options: {
-        apiKey: process.env.MICROCMS_API_KEY,
-        serviceId: "sushihack",
-        endpoint: "posts",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true,
       },
     },
     {
