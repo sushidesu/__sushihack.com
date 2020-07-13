@@ -1,12 +1,13 @@
 import React from "react"
 import { Post } from "../types/data"
+import { Layout } from "../components/Layout"
 
 type Props = {
   pageContext: Post
 }
 
 const BlogPost: React.FC<Props> = ({ pageContext }) => (
-  <div>
+  <Layout>
     <h1>{pageContext.title}</h1>
     <p>
       {pageContext.tags.map(tag => (
@@ -18,7 +19,7 @@ const BlogPost: React.FC<Props> = ({ pageContext }) => (
         __html: pageContext.body.childMarkdownRemark.html,
       }}
     />
-  </div>
+  </Layout>
 )
 
 export default BlogPost
