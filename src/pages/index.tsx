@@ -2,14 +2,15 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { SiteData } from "../types/data"
 import { relativeURL } from "../utils"
+import { Layout } from "../components/Layout"
 
 type Props = {
   data: SiteData
 }
 
 const Index: React.FC<Props> = ({ data }) => (
-  <div>
-    <h1>sushihack.com</h1>
+  <Layout>
+    <h1>recent posts</h1>
     <ul>
       {data.allContentfulPost.edges.map(({ node }) => (
         <li key={node.id}>
@@ -17,7 +18,7 @@ const Index: React.FC<Props> = ({ data }) => (
         </li>
       ))}
     </ul>
-  </div>
+  </Layout>
 )
 
 export const query = graphql`
