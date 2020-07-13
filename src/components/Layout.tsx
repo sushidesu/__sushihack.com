@@ -1,16 +1,18 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
-import styled from "@emotion/styled"
+import { ThemeProvider, styled } from "../themes"
 import { Header } from "./Header"
 import { Footer } from "./Footer"
 
 export const Layout: React.FC = ({ children }) => (
-  <Wrapper>
-    <Global styles={GlobalStyles} />
-    <Header />
-    <main>{children}</main>
-    <Footer />
-  </Wrapper>
+  <ThemeProvider>
+    <Wrapper>
+      <Global styles={GlobalStyles} />
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </Wrapper>
+  </ThemeProvider>
 )
 
 const GlobalStyles = css`
