@@ -1,6 +1,8 @@
 import React from "react"
 import { Post } from "../types/data"
 import { Layout } from "../components/Layout"
+import { Container } from "../components/Container"
+import { Article } from "../components/Article"
 
 type Props = {
   pageContext: Post
@@ -8,17 +10,19 @@ type Props = {
 
 const BlogPost: React.FC<Props> = ({ pageContext }) => (
   <Layout>
-    <h1>{pageContext.title}</h1>
-    <p>
-      {pageContext.tags.map(tag => (
-        <span key={tag.id}>{tag.name}, </span>
-      ))}
-    </p>
-    <section
-      dangerouslySetInnerHTML={{
-        __html: pageContext.body.childMarkdownRemark.html,
-      }}
-    />
+    <Container>
+      <h1>{pageContext.title}</h1>
+      <p>
+        {pageContext.tags?.map(tag => (
+          <span key={tag.id}>{tag.name}, </span>
+        ))}
+      </p>
+      <Article
+        dangerouslySetInnerHTML={{
+          __html: pageContext.body.childMarkdownRemark.html,
+        }}
+      />
+    </Container>
   </Layout>
 )
 
