@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import { SiteData } from "../types/data"
 import { relativeURL } from "../utils"
 import { Layout } from "../components/Layout"
+import { Container } from "../components/Container"
 
 type Props = {
   data: SiteData
@@ -10,14 +11,16 @@ type Props = {
 
 const Index: React.FC<Props> = ({ data }) => (
   <Layout>
-    <h1>recent posts</h1>
-    <ul>
-      {data.allContentfulPost.edges.map(({ node }) => (
-        <li key={node.id}>
-          <Link to={relativeURL("post", node.slug)}>{node.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <Container>
+      <h1>Recent Posts</h1>
+      <ul>
+        {data.allContentfulPost.edges.map(({ node }) => (
+          <li key={node.id}>
+            <Link to={relativeURL("post", node.slug)}>{node.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </Container>
   </Layout>
 )
 
