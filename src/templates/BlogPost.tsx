@@ -2,7 +2,7 @@ import React from "react"
 import { Post } from "../types/data"
 import { Layout } from "../components/Layout"
 import { Container } from "../components/Container"
-import { Article } from "../components/Article"
+import { Article, Tag, TagList } from "../components/Article"
 
 type Props = {
   pageContext: Post
@@ -12,11 +12,11 @@ const BlogPost: React.FC<Props> = ({ pageContext }) => (
   <Layout>
     <Container>
       <h1>{pageContext.title}</h1>
-      <p>
+      <TagList>
         {pageContext.tags?.map(tag => (
-          <span key={tag.id}>{tag.name}, </span>
+          <Tag key={tag.id}>{tag.name}</Tag>
         ))}
-      </p>
+      </TagList>
       <Article
         dangerouslySetInnerHTML={{
           __html: pageContext.body.childMarkdownRemark.html,
