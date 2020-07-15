@@ -14,9 +14,11 @@ const Index: React.FC<Props> = ({ data }) => (
     <Container>
       <h1>Recent Posts</h1>
       <ul>
-        {data.allContentfulPost.edges.map(({ node }) => (
+        {data.allMdx.edges.map(({ node }) => (
           <li key={node.id}>
-            <Link to={relativeURL("post", node.slug)}>{node.title}</Link>
+            <Link to={relativeURL("post", node.frontmatter.slug)}>
+              {node.frontmatter.title}
+            </Link>
           </li>
         ))}
       </ul>
@@ -26,12 +28,14 @@ const Index: React.FC<Props> = ({ data }) => (
 
 export const query = graphql`
   {
-    allContentfulPost {
+    allMdx {
       edges {
         node {
           id
-          title
-          slug
+          frontmatter {
+            title
+            slug
+          }
         }
       }
     }

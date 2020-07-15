@@ -1,4 +1,5 @@
 import React from "react"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { Post } from "../types/data"
 import { Layout } from "../components/Layout"
 import { Container } from "../components/Container"
@@ -11,17 +12,15 @@ type Props = {
 const BlogPost: React.FC<Props> = ({ pageContext }) => (
   <Layout>
     <Container>
-      <h1>{pageContext.title}</h1>
+      <h1>{pageContext.frontmatter.title}</h1>
       <TagList>
-        {pageContext.tags?.map(tag => (
-          <Tag key={tag.id}>{tag.name}</Tag>
+        {pageContext.frontmatter.tags?.map((tag, i) => (
+          <Tag key={i}>{tag}</Tag>
         ))}
       </TagList>
-      <Article
-        dangerouslySetInnerHTML={{
-          __html: pageContext.body.childMarkdownRemark.html,
-        }}
-      />
+      <Article>
+        <MDXRenderer>{pageContext.body}</MDXRenderer>
+      </Article>
     </Container>
   </Layout>
 )

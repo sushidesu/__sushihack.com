@@ -1,24 +1,20 @@
+import { ReactNode } from "react"
+
 export type Post = {
   id: string
+  body: string
 
-  slug: string
-  title: string
-  body: {
-    body: string
-    childMarkdownRemark: {
-      html: string
-    }
+  frontmatter: {
+    title: string
+    slug: string
+    tags: Array<string>
+    categories: Array<string>
+    published_at: string
   }
-  tags: Array<Tag>
-}
-
-export type Tag = {
-  id: string
-  name: string
 }
 
 export type SiteData = {
-  allContentfulPost: {
+  allMdx: {
     totalCount: number
     edges: {
       node: Post

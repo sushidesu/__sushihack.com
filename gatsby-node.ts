@@ -5,20 +5,17 @@ import { relativeURL } from "./src/utils"
 
 const query = `
   {
-    allContentfulPost {
+    allMdx {
       edges {
         node {
-          slug
-          title
-          body {
-            body
-            childMarkdownRemark {
-              html
-            }
-          }
-          tags {
-            id
-            name
+          id
+          body
+          frontmatter {
+            title
+            slug
+            tags
+            categories
+            published_at
           }
         }
       }
@@ -38,9 +35,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
     throw result.errors
   }
 
-  result.data.allContentfulPost.edges.forEach(({ node }) => {
+  result.data.allMdx.edges.forEach(({ node }) => {
     createPage<Post>({
-      path: relativeURL("post", node.slug),
+      path: relativeURL("post", node.frontmatter.slug),
       component: path.resolve("./src/templates/BlogPost.tsx"),
       context: node,
     })
